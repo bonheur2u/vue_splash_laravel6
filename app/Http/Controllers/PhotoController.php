@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Comment;
+use App\Http\Requests\StoreComment;
 
 class PhotoController extends Controller
 {
@@ -96,7 +98,7 @@ class PhotoController extends Controller
      */
     public function show(string $id)
     {
-        $photo = Photo::where('id', $id)->with(['owner'])->first();
+        $photo = Photo::where('id', $id)->with(['owner', 'comments.author'])->first();
         
         return $photo ?? abort(404);
     }
