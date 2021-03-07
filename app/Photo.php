@@ -32,6 +32,8 @@ class Photo extends Model
     /** IDの桁数 */
     const ID_LENGTH = 12;
 
+    protected $perPage = 6;
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
@@ -56,7 +58,7 @@ class Photo extends Model
      */
     public function getUrlAttribute()
     {
-        return Storage::cloud()->url($this->attributes['filename']);
+        return \Storage::cloud()->url($this->attributes['filename']);
     }
 
     /**
